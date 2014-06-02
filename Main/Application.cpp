@@ -38,7 +38,6 @@ namespace TrueCrypt
 
 	FilePath Application::GetConfigFilePath (const wxString &configFileName, bool createConfigDir)
 	{
-		wxStandardPaths stdPaths;
 		DirectoryPath configDir;
 		
 		if (!Core->IsInPortableMode())
@@ -48,6 +47,7 @@ namespace TrueCrypt
 			configPath.Normalize();
 			configDir = wstring (configPath.GetFullPath());
 #else
+			wxStandardPaths stdPaths;
 			configDir = wstring (stdPaths.GetUserDataDir());
 #endif
 		}
@@ -63,12 +63,12 @@ namespace TrueCrypt
 
 	DirectoryPath Application::GetExecutableDirectory ()
 	{
-		return wstring (wxFileName (wxStandardPaths().GetExecutablePath()).GetPath());
+		return wstring (wxFileName (wxStandardPaths::Get().GetExecutablePath()).GetPath());
 	}
 
 	FilePath Application::GetExecutablePath ()
 	{
-		return wstring (wxStandardPaths().GetExecutablePath());
+		return wstring (wxStandardPaths::Get().GetExecutablePath());
 	}
 
 	void Application::Initialize (UserInterfaceType::Enum type)
