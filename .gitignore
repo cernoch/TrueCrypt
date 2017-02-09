@@ -1,0 +1,7 @@
+*.o
+*.d
+*.a
+*.xml.h
+*.bmp.h
+*.txt.h
+/pkcs*.h
